@@ -73,9 +73,9 @@ console.log(capitalize('the quick brown fox'));
 //! Unique values in string or string compression
 const uniqueValues = (str) => {
   let unique = '';
-  for (let i = 0; i < str.length; i++) {
-    if (unique.indexOf(str[i]) === -1) {
-      unique += str[i];
+  for (const element of str) {
+    if (unique.indexOf(element) === -1) {
+      unique += element;
     }
   }
   return unique;
@@ -84,8 +84,8 @@ console.log(uniqueValues('abbccccdddddddee'));
 
 //! or true or false statements
 const uniqueValue = (str) => {
-  for (let i = 0; i < str.length; i++) {
-    if (str.indexOf(str[i]) !== str.lastIndexOf(str[i])) {
+  for (const element of str) {
+    if (str.indexOf(element) !== str.lastIndexOf(element)) {
       return false;
     }
   }
@@ -114,11 +114,11 @@ console.log(uniqueValue1('abc'));
 const arraySum = (arr) => {
   let max = 0;
   let sum = 0;
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] > max) {
-      max = arr[i];
+  for (const element of arr) {
+    if (element > max) {
+      max = element;
     }
-    sum += arr[i];
+    sum += element;
   }
   return sum - max;
 };
@@ -168,15 +168,15 @@ const highestRepeatLetterInWord = (str) => {
   let temp = {};
   let max = 0;
   let letter = '';
-  for (let i = 0; i < str.length; i++) {
-    if (temp[str[i]]) {
-      temp[str[i]]++;
+  for (const element of str) {
+    if (temp[element]) {
+      temp[element]++;
     } else {
-      temp[str[i]] = 1;
+      temp[element] = 1;
     }
-    if (temp[str[i]] > max) {
-      max = temp[str[i]];
-      letter = str[i];
+    if (temp[element] > max) {
+      max = temp[element];
+      letter = element;
     }
   }
   return {letter, max};
@@ -296,11 +296,10 @@ console.log(threeTimesStraightAway(2, 3)(4, 5)(6, 7));
 
 //! Multiply numbers without numbers Zero - No Array
 const multiplyNumbers = (...args) => {
-  const result = args.reduce((acc, cur) => {
+  return args.reduce((acc, cur) => {
     return cur ? acc * cur : acc + cur;
     // initial values from 1 to higher for multiply otherwise plus
   }, 1);
-  return result;
 };
 console.log(multiplyNumbers(1, 2, 3, 4, 0));
 
@@ -1022,8 +1021,8 @@ const balancedbrackets1 = (str) => {
     '(': ')'
   };
 
-  for (let i = 0; i < str.length; i++) {
-    let char = str[i];
+  for (const element of str) {
+    let char = element;
     if (openers.includes(char)) {
       stack.push(char);
     } else if (closers.includes(char)) {

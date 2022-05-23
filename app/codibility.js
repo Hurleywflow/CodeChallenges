@@ -297,8 +297,8 @@ function Dominator(A) {
 console.log(Dominator([3, 0, 1, 1, 4, 1, 1]));
 console.log(Dominator([1, 2, 3, 4, 5, 6, 7]));
 
-//! MaxNonOverlappingSegments;
 /*
+ MaxNonOverlappingSegments;
 This is the MaxNonOverlappingSegments for Greedy algorithms > MaxNonOverlappingSegments
 The problem is equivalent to the Activity Selection Problem,
 where you have to choose the maximum non overlapping tasks.
