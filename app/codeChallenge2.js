@@ -429,8 +429,8 @@ the function deleteNumber focus on correctness. The performance of function dele
 const deleteNumber = (N) => {
   let n = N.toString();
   let count1 = 0;
-  for (let i = 0; i < N; i++) {
-    if (i === '5') count1++;
+  for (let element of n) {
+    if (element === '5') count1++;
   }
   if (count1 === 0) return N;
   let result1 = '';

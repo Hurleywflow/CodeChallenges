@@ -28,13 +28,12 @@ console.log(mathSequence([3, 9, 63]));
 //! function solution longest words in a string return first longest word in sentence
 const wordLongest = (str) => {
   const words = str.split(' ');
-  const longest = words.reduce((acc, cur) => {
+  return words.reduce((acc, cur) => {
     return cur.length >= acc.length ? cur : acc;
   }, '');
-  return longest;
 };
 console.log(
-  wordLongest('The quick brown fox jumped over the lazyyyy change dog')
+  wordLongest('The quick brown fox jumped over the lazyyyy lazyyyy  change dog')
 );
 
 //! return all longest words in a string
@@ -96,15 +95,6 @@ console.log(uniqueValue('abc'));
 
 // or use Set methods
 const uniqueValue1 = (str) => {
-  // let tempStr = new Set();
-  // for (let letter of str) {
-  //   if (tempStr.has(letter)) {
-  //     return false;
-  //   }
-  //   tempStr.add(letter);
-  // }
-  // // return str;
-  // return true;
   return new Set(str).size === str.length;
 };
 console.log(uniqueValue1('abbccccdddddddee'));
@@ -133,6 +123,7 @@ const arraySum2 = (arr) => {
   });
   // take away the biggest number of elements
   let largest = tempArray.pop();
+  // let largest = Math.max(tempArray)
   let sum = 0;
   tempArray.forEach((num) => {
     sum += num;
@@ -150,16 +141,16 @@ let product = [
   {title: 'iphone', price: 100, company: 'samsung'}
 ];
 const getUnique = (arr) => {
-  // let tempArray = arr.map(item => item.company);
-  // return [...new Set(tempArray)];
+  let tempArray = arr.map(item => item.company);
+  return [...new Set(tempArray)];
   // or
-  return [
-    ...arr.reduce((acc, cur) => {
-      acc.add(cur.company);
-      return acc;
-      // type of set return
-    }, new Set())
-  ];
+  // return [
+  //   ...arr.reduce((acc, cur) => {
+  //     acc.add(cur.company);
+  //     return acc;
+  //     // type of set return
+  //   }, new Set())
+  // ];
 };
 console.log(getUnique(product));
 
@@ -380,8 +371,7 @@ console.log(missingNumber([1, 10]));
 //! Find the seconds largest element in an array
 const secondLargest = (arr) => {
   let max = Math.max(...arr);
-  let secondMax = Math.max(...arr.filter((item) => item < max));
-  return secondMax;
+  return Math.max(...arr.filter((item) => item < max));
 };
 console.log(secondLargest([1, 2, 9, 10]));
 console.log(secondLargest([1, 2, 9, 10, 12, 15]));
@@ -390,8 +380,7 @@ console.log(secondLargest([1, -2, 9, -10, -12, -15]));
 //! Find the seconds smallest element in an array
 const secondSmallest = (arr) => {
   let min = Math.min(...arr);
-  let secondMin = Math.min(...arr.filter((item) => item > min));
-  return secondMin;
+  return Math.min(...arr.filter((item) => item > min));
 };
 console.log(secondSmallest([1, 2, 9, 10]));
 console.log(secondSmallest([1, -2, 9, -10, -12, -15]));
@@ -461,9 +450,9 @@ console.log(rockPaperScissors('scissors', 'rock'));
 //! Get an array of numbers, return the sum of all of the positive one in the array
 const positiveSum = (arr) => {
   let sum = 0;
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] > 0) {
-      sum += arr[i];
+  for (const element of arr) {
+    if (element > 0) {
+      sum += element;
     }
   }
   return sum;
@@ -479,6 +468,7 @@ const repeatString = (str, n) => {
   return str + repeatString(str, n - 1);
 };
 console.log(repeatString('hello', 3));
+console.log('hello'.repeat(3));
 
 //! Remove all spaces from a string and then return an array of words
 const removeSpaces = (str) => {
@@ -638,6 +628,7 @@ const longestWord2 = (str) => {
   return tempArr.filter((word) => word.length === longestWordArr);
 };
 console.log(longestWord2('Hello, my name is Hurley, Henrry'));
+
 //! Split an array into chunks array with size of n
 // ex. chunkArray([1, 2, 3, 4], 2) === [[1, 2], [3, 4]]
 const chunkArray = (arr, size) => {
@@ -681,12 +672,12 @@ const anagrams = (str1, str2) => {
 };
 
 console.log(anagrams('rail safety', 'fairy tales'));
-const isAnagramx = (str1, str2) =>
-  str1
-    .split('')
-    .sort()
-    .every((value, index) => value === str2.split('').sort()[index]);
-console.log(isAnagramx('rail safety', 'fairy tales'));
+// const isAnagramx = (str1, str2) =>
+//   str1
+//     .split('')
+//     .sort()
+//     .every((value, index) => value === str2.split('').sort()[index]);
+// console.log(isAnagramx('rail safety', 'fairy tales'));
 
 //! LETTER CHANGES
 // Change every letter of the string to the one that follows it and capitalize the vowels
@@ -914,25 +905,6 @@ const multiplyTwoList = (str) => {
 };
 console.log(multiplyTwoList('9 0 6 | 15 14 9'));
 
-//! find the longest word in a sentence. If the sentence has more than one word of the same length you should pick the one that appears first.
-// Ex.
-// longestWord('some line with text') == 'some'
-
-/**
- * Given a string, return the longest word in the string
- * @param str - The string to be analyzed.
- * @returns The longest word in the string.
- */
-const isLongestWords = (str) => {
-  const words = str.split(' ');
-  const sorted = words.sort((a, b) => b.length - a.length);
-  const longestWordArr = sorted.filter(
-    (word) => word.length === sorted[0].length
-  );
-  return longestWordArr[0];
-};
-console.log(isLongestWords('some line with text'));
-console.log(isLongestWords('another line'));
 
 //! Capitalize all characters in the sentence
 /**
@@ -1006,43 +978,43 @@ function balancedBrackets(str) {
   return stack.length === 0;
 }
 console.log(balancedBrackets('()'));
-// console.log(balancedBrackets('[{()}]'));
+console.log(balancedBrackets('[{()}]'));
 console.log(balancedBrackets('[{()]'));
 
 //! or
-const balancedbrackets1 = (str) => {
-  const stack = [];
-  let openers = ['{', '[', '('];
-  let closers = ['}', ']', ')'];
+// const balancedbrackets1 = (str) => {
+//   const stack = [];
+//   let openers = ['{', '[', '('];
+//   let closers = ['}', ']', ')'];
 
-  const dict = {
-    '{': '}',
-    '[': ']',
-    '(': ')'
-  };
+//   const dict = {
+//     '{': '}',
+//     '[': ']',
+//     '(': ')'
+//   };
 
-  for (const element of str) {
-    let char = element;
-    if (openers.includes(char)) {
-      stack.push(char);
-    } else if (closers.includes(char)) {
-      //is our stack empty?
+//   for (const element of str) {
+//     let char = element;
+//     if (openers.includes(char)) {
+//       stack.push(char);
+//     } else if (closers.includes(char)) {
+//       //is our stack empty?
 
-      if (!stack.length) {
-        return false;
-      }
-      //does our popped element not match the corresponding element?
-      else if (dict[stack.pop()] !== char) {
-        return false;
-      }
-    }
-  }
+//       if (!stack.length) {
+//         return false;
+//       }
+//       //does our popped element not match the corresponding element?
+//       else if (dict[stack.pop()] !== char) {
+//         return false;
+//       }
+//     }
+//   }
 
-  return stack.length === 0;
-};
-console.log(balancedbrackets1('()'));
-console.log(balancedbrackets1('[{()}]'));
-console.log(balancedbrackets1('[{()]'));
+//   return stack.length === 0;
+// };
+// console.log(balancedbrackets1('()'));
+// console.log(balancedbrackets1('[{()}]'));
+// console.log(balancedbrackets1('[{()]'));
 
 /* An Armstrong number is an n-digit number that is equal to the sum of the nth
 nth powers of its digits. Determine if the input number is an Armstrong number. Return either true or false.
@@ -1051,7 +1023,6 @@ nth powers of its digits. Determine if the input number is an Armstrong number. 
 function isArmstrongNumber(n) {
   let strN = String(n);
   let power = strN.length;
-  console.log(power);
   let sum = 0;
   for (let num of strN) {
     sum += Math.pow(Number(num), power);
