@@ -450,3 +450,24 @@ console.log(deleteNumber(15958));
 console.log(deleteNumber(-5859));
 console.log(deleteNumber(-5000));
 console.log(deleteNumber(0));
+
+/**
+ * write code that prints out an array of numbers containing 1 through 100 ([1,2,...,100]) and says whether the number is divisible by 4 or 7. Please use .map or .filter if possibleThis question is required. *
+ */
+let numbers = [];
+for (let i = 1; i <= 100; i++) {
+  numbers.push(i);
+}
+
+const arr2 = numbers.map((num) =>
+  num % 4 === 0 || num % 7 === 0 ? num : null
+);
+const arr3 = arr2.filter((num) => num !== null);
+console.log(`This array contains numbers divisible by 4 and 7: ${arr3}`);
+
+
+
+// set toString
+const set = new Set([1, 2, 3, 4]);
+const str = [...set].join(' ');
+console.log(typeof str);

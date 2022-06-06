@@ -1,0 +1,85 @@
+/* A business card template using CSS containing a circular image,name,phone number,
+and email. Any link should not be underlined. I should be able to edit the business card and replace the image just by changing the URL used for it (without css changes).
+
+*/
+
+
+body {
+    background: #e6e6e6;
+    font-family: 'Roboto', sans-serif;
+}
+
+.business-card {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 10px #ccc;
+    position: relative;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+.business-card img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.business-card .name {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #000;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.business-card .phone {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #000;
+    font-size: 20px;
+    text-align: center;
+}
+
+.business-card .email {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #000;
+    font-size: 20px;
+    text-align: center;
+}
+
+.business-card .website {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #000;
+    font-size: 20px;
+    text-align: center;
+}
+
+.business-card .social {
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #000;
+    font-size: 20px;
+    text-align: center;
+}
+
+.business-card .social a {
+    text-decoration: none;
+}
