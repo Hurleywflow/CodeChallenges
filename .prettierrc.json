@@ -9,6 +9,5 @@
   "htmlWhitespaceSensitivity": "css",
   "jsxBracketSameLine": true,
   "jsxSingleQuote": true,
-  "proseWrap": "preserve",
-  "quoteProps": "as-needed"
+  "proseWrap": "preserve"
 }

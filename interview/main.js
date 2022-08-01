@@ -30,4 +30,3 @@ function tradeCounts(systemA, systemB) {
 }
 console.log(tradeCounts([2, 7, 4, 8], [6, 10]));
 console.log(tradeCounts([5, 19, 9, 8, 16], [6, 3, 15, 16]));
-

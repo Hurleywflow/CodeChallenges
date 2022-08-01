@@ -1,85 +1,32 @@
-/* A business card template using CSS containing a circular image,name,phone number,
-and email. Any link should not be underlined. I should be able to edit the business card and replace the image just by changing the URL used for it (without css changes).
+.box:before {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(-45deg, #f8acff 0%, #696eff 100%);
+  transform: translate3d(0px, 20px, 0) scale(0.95);
+  filter: blur(20px);
+  opacity: var(0.7);
+  transition: opacity 0.3s;
+  border-radius: inherit;
+}
 
+/*
+* Prevents issues when the parent creates a
+* stacking context. (For example, using the transform
+* property )
 */
-
-
-body {
-    background: #e6e6e6;
-    font-family: 'Roboto', sans-serif;
-}
-
-.business-card {
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    background: #fff;
-    box-shadow: 0 0 10px #ccc;
-    position: relative;
-    margin: 0 auto;
-    margin-top: 30px;
-}
-
-.business-card img{
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-.business-card .name {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #000;
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-}
-
-.business-card .phone {
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #000;
-    font-size: 20px;
-    text-align: center;
-}
-
-.business-card .email {
-    position: absolute;
-    top: 70%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #000;
-    font-size: 20px;
-    text-align: center;
-}
-
-.business-card .website {
-    position: absolute;
-    top: 80%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #000;
-    font-size: 20px;
-    text-align: center;
-}
-
-.business-card .social {
-    position: absolute;
-    top: 90%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #000;
-    font-size: 20px;
-    text-align: center;
-}
-
-.business-card .social a {
-    text-decoration: none;
+.box::after {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: inherit;
+  border-radius: inherit;
 }
