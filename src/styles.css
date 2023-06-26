@@ -1,0 +1,59 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Familjen Grotesk', sans-serif;
+  background: linear-gradient(0deg, #F6F2FF, #F6F2FF), #FBFAFF;
+  color: #333;
+}
+
+button {
+  width: 320px;
+  height: 55px;
+  color: #fff;
+  padding: 5px 10px;
+  margin-top: 70px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border: none;
+  background-size: 120% auto;
+  background-image: linear-gradient(90deg, #8456EC 3.25%, #E87BF8 100%);
+  border-radius: 10px;
+}
+
+.css-button-gradient--1:hover {
+  background-position: right center;
+}
+
+.css-button-gradient--1:active {
+  top: 2px;
+}
+
+h1 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 64px;
+  text-align: right;
+  color: #240D57;
+}
+
+p {
+  width: auto;
+  height: 56px;
+  margin-top: 20px;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 28px;
+  /* text-align: right; */
+}
