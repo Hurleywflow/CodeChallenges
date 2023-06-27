@@ -9,23 +9,18 @@
 
 const SINGLE_OCCURRENCE = 'x';
 const MULTIPLE_OCCURRENCES = 'y';
-
-function code(str) {
+const freq = new Map();
+ function code(str) {
   if (typeof str !== 'string' || str.length === 0) {
     throw new TypeError('Input parameter must be a non-empty string.');
   }
-  str = str.toLowerCase();
   let result = '';
-  const freq = new Map();
-  for (const char of str) {
+  freq.clear();
+  for (const char of str.toLowerCase()) {
     freq.set(char, (freq.get(char) || 0) + 1);
   }
   for (const char of str) {
-    if (freq.get(char) === 1) {
-      result += SINGLE_OCCURRENCE;
-    } else {
-      result += MULTIPLE_OCCURRENCES;
-    }
+    result += freq.get(char.toLowerCase()) === 1 ? SINGLE_OCCURRENCE : MULTIPLE_OCCURRENCES;
   }
   return result;
 }
