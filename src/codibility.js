@@ -514,14 +514,38 @@ console.log(binary(5, 5));
 // each element of array A is an integer within the range [0.. 1,000,000,000];
 // array A is sorted in non-decreasing order.
 // the function should return true or false.
+// Assume that A and B are integers within the range [0..100,000,000].
+// Counts the number of 1 bits in the product of A and B.
+function binaryOne(A, B) {
+  let count = 0;
+  let product = A * B;
+  // Continues looping while product is greater than 0
+  while (product > 0) {
+    // If the least significant bit is 1, increments the count
+    if (product & 1) count++;
+    // Shifts product right by 1, effectively dividing by 2
+    product >>= 1;
+  }
+  return count;
+}
+// Logs the number of 1 bits in 3 * 7 = 21 which is 3
+console.log(binaryOne(3, 7));
+// Logs the number of 1 bits in 5 * 5 = 25 which is 2
+console.log(binaryOne(5, 5));
+
+// Checks if an array contains consecutive integers from 1 to K
 function solution1(A, K) {
   let n = A.length;
+  // Loops through array and checks if each element is 1 greater than the previous
   for (let i = 0; i < n; i++) {
     if (A[i] + 1 < A[i + 1]) return false;
   }
+  // Checks if the first element is 1 and the last element is K
   return !(A[0] !== 1 && A[n] !== K);
 }
+// Returns true as [1, 1, 2, 3, 3] contains 1 to 3
 console.log(solution1([1, 1, 2, 3, 3], 3));
+// Returns false as [1, 1, 3] does not contain 2
 console.log(solution1([1, 1, 3], 2));
 
 // Write a function solution that, given an integer N, returns the maximum possible value obtainable by deleting one 5 digit from the decimal number N.
@@ -535,33 +559,52 @@ console.log(solution1([1, 1, 3], 2));
 // the function solution focus on correctness. The performance of function solution will not be the focus on
 
 function solution(N) {
+  // Checks if input N is within range [-999995, 999995]
   if (N < -999995 || N > 999995) {
     throw new Error('Invalid input: Number out of range [-999995, 999995]');
   }
+  // Converts N to string
   let str = N.toString();
+  // Splits string into array of characters
   let arr = str.split('');
+  // Sets found to false
   let found = false;
+  // Loops through array of characters
   for (let i = 0; i < arr.length; i++) {
+    // Checks if current character is 5
     if (arr[i] === '5') {
+      // Removes first occurrence of 5 from array
       arr.splice(i, 1);
+      // Sets found to true
       found = true;
-      break; // only need to delete the first '5'
+      // Breaks out of loop after first 5 is removed
+      break;
     }
   }
+  // Returns N if no 5 was found
   if (!found) {
     return N;
   }
+  // Joins array back into string and converts to number
   let result = Number(arr.join(''));
+  // Returns 0 if result is 0, else returns result
   return result === 0 ? 0 : result;
 }
 
+// Logs 1958
 console.log(solution(15958));
+// Logs -589
 console.log(solution(-5859));
+// Logs 0
 console.log(solution(-5000));
+// Logs 0
 console.log(solution(0));
+// Logs 555
 console.log(solution(555));
+// Logs 505
 console.log(solution(505));
-// console.log(solution(1000000));
+
+
 
 // Write a function 'code' that takes a string and returns a new string, where all input string characters are replaced according to the following rules:
 // If the character appears only once in the input string, replace it with 'x';
@@ -572,29 +615,56 @@ console.log(solution(505));
 // changeWord('case') === 'xxxx';
 // changeWord('Times') === 'xxxxx';
 
-const SINGLE_OCCURRENCE = 'x';
-const MULTIPLE_OCCURRENCES = 'y';
+const SINGLE_CHARACTER = 'x';
+// Declare a constant to represent a single occurrence character
 
-function code(str) {
-  if (typeof str !== 'string' || str.length === 0) {
+const MULTIPLE_CHARACTERS = 'y';
+// Declare a constant to represent a multiple occurrence character
+
+function encodeString(inputString) {
+  // Define a function that takes an input string and returns an encoded string
+
+  if (typeof inputString !== 'string' || inputString.length === 0) {
     throw new TypeError('Input parameter must be a non-empty string.');
   }
-  str = str.toLowerCase();
-  let result = '';
-  const freq = new Map();
-  for (const char of str) {
-    freq.set(char, (freq.get(char) || 0) + 1);
+  // Validate the input parameter and throw an error if invalid
+
+  inputString = inputString.toLowerCase();
+  // Convert the input string to lowercase
+
+  let encodedString = '';
+  // Initialize an empty string to store the encoded string
+
+  const characterFrequency = new Map();
+  // Declare a Map to store the frequency of each character
+
+  for (const character of inputString) {
+    // Loop through each character of the input string
+
+    characterFrequency.set(
+      character,
+      (characterFrequency.get(character) || 0) + 1
+    );
+    // Increment the frequency of the current character in the Map
   }
-  for (const char of str) {
-    if (freq.get(char) === 1) {
-      result += SINGLE_OCCURRENCE;
+
+  for (const character of inputString) {
+    // Loop through each character of the input string again
+
+    if (characterFrequency.get(character) === 1) {
+      encodedString += SINGLE_CHARACTER;
+      // If the character occurs once, append 'x' to the encoded string
     } else {
-      result += MULTIPLE_OCCURRENCES;
+      encodedString += MULTIPLE_CHARACTERS;
+      // If the character occurs more than once, append 'y' to the encoded string
     }
   }
-  return result;
+
+  return encodedString;
+  // Return the encoded string
 }
-console.log(code('please'));
-console.log(code('case'));
-console.log(code('Times'));
-console.log(code('Case'));
+
+console.log(encodeString('please'));
+console.log(encodeString('case'));
+console.log(encodeString('Times'));
+console.log(encodeString('Case'));
