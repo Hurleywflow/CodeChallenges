@@ -1,4 +1,3 @@
-/* eslint-disable no-useless-escape */
 // Write a function 'code' that takes a string and returns a new string, where all input string characters are replaced according to the following rules:
 // If the character appears only once in the input string, replace it with 'x';
 // If the character appears several times in the input string, replace it with 'y';
@@ -8,37 +7,41 @@
 // changeWord('case') === 'xxxx';
 // changeWord('Times') === 'xxxxx';
 
-const singleChar = 'x'; // Replace character if it appears once
-const multiChar = 'y'; // Replace character if it appears multiple times
-const charFreq = new Map(); // Store character frequencies
-
+// Validate input
 function validateInput(input) {
-  // Checks that input is a non-empty string
   if (typeof input !== 'string' || !input.length) {
     throw new TypeError('Input must be non-empty string');
   }
 }
-function encode(input) {
-  // Replaces characters in input string according to frequency
-  validateInput(input);
-  charFreq.clear();
 
-  for (let char of input) {
-    const lowerChar = char.toLowerCase();
-    // Increment frequency of character in Map
-    charFreq.set(lowerChar, (charFreq.get(lowerChar) || 0) + 1);
+// Encode input string
+function encode(inputString) {
+  // Validate input
+  validateInput(inputString);
+
+  // Map to store character frequencies
+  const charFreqMap = new Map();
+
+  // Convert to lowercase
+  const lowerCaseInput = inputString.toLowerCase();
+
+  // Build character frequency map
+  for (let char of lowerCaseInput) {
+    const count = charFreqMap.get(char) || 0;
+    charFreqMap.set(char, count + 1);
   }
-  let result = '';
-  for (let char of input) {
-    const lowerChar = char.toLowerCase();
-    // Replace character with 'x' if appears once, else 'y'
-    result += charFreq.get(lowerChar) === 1 ? singleChar : multiChar;
+
+  // Encode string based on frequency
+  let encodedString = '';
+  for (let char of lowerCaseInput) {
+    encodedString += charFreqMap.get(char) === 1 ? 'x' : 'y';
   }
-  return result;
+
+  return encodedString;
 }
 
-console.log(encode('please'));
-console.log(encode('case'));
-console.log(encode('Times'));
-console.log(encode('Case'));
-
+// Usage examples
+console.log(encode('please')); // xxyxxy
+console.log(encode('case')); // xxxx
+console.log(encode('Times')); // xxxxx
+console.log(encode('Case')); // xxxx
