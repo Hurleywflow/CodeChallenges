@@ -39,9 +39,7 @@ function encode(inputString) {
 
   return encodedString;
 }
-
 // Usage examples
 console.log(encode('please')); // xxyxxy
 console.log(encode('case')); // xxxx
 console.log(encode('Times')); // xxxxx
-console.log(encode('Case')); // xxxx
